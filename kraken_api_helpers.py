@@ -1,5 +1,5 @@
 """This module provides the main functionality for interacting with the Kraken API 
-   (i.e. only query_account_balances as of right now)
+   (i.e. only 'query_account_balances' and 'query_coin_balance' as of right now)
 """
 
 import time
