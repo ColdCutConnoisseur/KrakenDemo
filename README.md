@@ -26,6 +26,6 @@ If you want to use specific functions of the module (of which there currently ex
     query_coin_balance(coin)
 ) in one of your scripts, you can import as follows:
 
-    from kraken_api_helpers.py import query_account_balances, query_coin_balances
+    from kraken_api_helpers import query_account_balances, query_coin_balances
 
 
