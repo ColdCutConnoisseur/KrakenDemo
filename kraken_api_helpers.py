@@ -92,11 +92,9 @@ def query_account_balances():
             return None
         
         else:
-
-            print(json_response)
-
             try: #Check for 'result' key
                 result = json_response['result']
+                print(result) #DEBUG
                 return result
 
             except KeyError: #No 'result' key
@@ -117,7 +115,7 @@ def query_coin_balance(coin):
     coins_with_balance = response.keys()
 
     if coin not in coins_with_balance:
-        print("Coin balance not found.  Make sure it is a non-zero balance and that case matches" +\
+        print(f"{coin} balance not found.  Make sure it is a non-zero balance and that case matches" +\
               " that of Kraken.")
 
     else:
@@ -127,3 +125,4 @@ def query_coin_balance(coin):
 
 if __name__ == "__main__":
     query_account_balances()
+    #query_coin_balance('ETH')
