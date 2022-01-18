@@ -22,7 +22,7 @@ Set these two environment variables in your terminal as follows (don't put the b
 Type **python kraken_api_helpers.py** to run the script. This currently defaults to a call to _query_account_balances()_
 
 If you want to use specific functions of the module (of which there currently exists only two:
-    query_account_balances()
+    query_account_balances() and
     query_coin_balance(coin)
 ) in one of your scripts, you can import as follows:
 
