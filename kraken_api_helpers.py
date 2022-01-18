@@ -86,13 +86,21 @@ def query_account_balances():
     #Check for successful call
     if r.status_code == 200:
         json_response = r.json()
-        response_errors = json_response['errors'] #Unique to Kraken in that a 200 status code can still be a bad call
+        response_errors = json_response['error'] #Unique to Kraken in that a 200 status code can still be a bad call
         if len(response_errors) > 0:
             print(f"Error(s) returned in call to 'query_account_balances': {response_errors}")
             return None
+        
         else:
+
             print(json_response)
-            return json_response
+
+            try: #Check for 'result' key
+                result = json_response['result']
+                return result
+
+            except KeyError: #No 'result' key
+                return None
 
     #Status code other than 200
     else:
@@ -101,19 +109,19 @@ def query_account_balances():
 
 def query_coin_balance(coin):
     """Return the balance for a given coin"""
-    resp = query_account_balances()
-    if not resp:
+    response = query_account_balances()
+    if not response:
         print("Bad call in call to 'query_account_balances'")
         return 0
 
-    coins_with_balance = resp.keys()
+    coins_with_balance = response.keys()
 
     if coin not in coins_with_balance:
         print("Coin balance not found.  Make sure it is a non-zero balance and that case matches" +\
               " that of Kraken.")
 
     else:
-        coin_balance = resp[coin]
+        coin_balance = response[coin]
         print(f"{coin} balance: {coin_balance}")
 
 
